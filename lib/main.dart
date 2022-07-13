@@ -60,7 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> get _recentTransaction {
     return _transaction.where((tr) {
-      return tr.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
+      return tr.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
     }).toList();
   }
 
@@ -116,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Container(
               height: availableHeight * 0.25,
-              child: Chart(),
+              child: Chart(recentTransaction: _recentTransaction),
             ),
             Container(
               height: availableHeight * 0.75,
