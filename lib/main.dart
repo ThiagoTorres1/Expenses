@@ -58,6 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
   // const MyHomePage({Key? key}) : super(key: key);
   final List<Transaction> _transaction = [];
 
+  List<Transaction> get _recentTransaction {
+    return _transaction.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
+    }).toList();
+  }
+
   _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
